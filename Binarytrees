@@ -1,0 +1,120 @@
+public class BinaryT
+{
+    
+    static class Node
+    {
+        int data;
+        Node left;
+        Node right;
+
+        Node(int data)
+        {
+            this.data=data;
+            this.left=null;
+            this.right=null;
+        }
+    }
+
+    public static class BinaryTree
+    {
+        int idx=-1;
+        public Node buildtree(int arr[])
+        {
+            idx++;
+            if(arr[idx]==-1)
+            {
+                return null;
+            }
+         Node newnode=new Node(arr[idx]);
+         newnode.left=buildtree(arr);
+         newnode.right=buildtree(arr);
+         return newnode;
+        }
+
+        //preorder
+
+        public void preorder(Node root)
+        {
+            if(root==null)
+            {
+                return;
+            }
+            System.err.println(root.data);
+            preorder(root.left);
+            preorder(root.right);
+
+        }
+         //inorder
+
+        public void inorder(Node root)
+        {
+            if(root==null)
+            {
+                return;
+            }
+              inorder(root.left);
+            System.out.println(root.data);
+            inorder(root.right);
+
+        }
+        //postorder
+               public void postorder(Node root)
+        {
+            if(root==null)
+            {
+                return;
+            }
+              postorder(root.left);
+            postorder(root.right);
+             System.out.print(root.data+" ");
+        }
+        //count of nodes
+        public int count(Node root)
+        {
+            if(root==null)
+            {
+                return 0;
+            }
+           int leftcount= count(root.left);
+               int rightcount= count(root.right);
+               return leftcount+rightcount+1;
+        }
+             //sum of nodes
+        public int sum(Node root)
+        {
+            if(root==null)
+            {
+                return 0;
+            }
+           int leftsum= sum(root.left);
+               int rightsum= sum(root.right);
+               return leftsum+rightsum+root.data;
+        }
+        //height
+         //count of nodes
+        public int height(Node root)
+        {
+            if(root==null)
+            {
+                return 0;
+            }
+           int leftheight= count(root.left);
+               int rightheight= count(root.right);
+               int oheight=Math.max(leftheight,rightheight );
+               return oheight+1;
+        }
+
+    }
+    public static void main(String args[])
+    {
+        int arr[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+        BinaryTree tree=new BinaryTree();
+        Node root=tree.buildtree(arr);
+            tree.postorder(root);
+             tree.inorder(root);
+               tree.pretorder(root);
+           System.out.print( "\n"+tree.count(root));
+            System.out.print( "\n"+tree.sum(root));
+              System.out.print( "\n"+tree.height(root));
+    }
+}
