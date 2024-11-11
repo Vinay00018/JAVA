@@ -14,7 +14,7 @@ public class BinaryT
             this.right=null;
         }
     }
-
+// build tree
     public static class BinaryTree
     {
         int idx=-1;
